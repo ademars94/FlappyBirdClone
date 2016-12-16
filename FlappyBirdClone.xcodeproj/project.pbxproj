@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E52BCD631E048EA400D2BC26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BCD621E048EA400D2BC26 /* AppDelegate.swift */; };
-		E52BCD651E048EA400D2BC26 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD641E048EA400D2BC26 /* GameScene.sks */; };
 		E52BCD671E048EA400D2BC26 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD661E048EA400D2BC26 /* Actions.sks */; };
-		E52BCD691E048EA400D2BC26 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BCD681E048EA400D2BC26 /* GameScene.swift */; };
 		E52BCD6B1E048EA400D2BC26 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BCD6A1E048EA400D2BC26 /* GameViewController.swift */; };
 		E52BCD6E1E048EA400D2BC26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD6C1E048EA400D2BC26 /* Main.storyboard */; };
 		E52BCD701E048EA400D2BC26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD6F1E048EA400D2BC26 /* Assets.xcassets */; };
@@ -31,14 +29,14 @@
 		E52BCD9D1E04974C00D2BC26 /* Dead.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD9A1E04974C00D2BC26 /* Dead.mp3 */; };
 		E52BCD9E1E04974C00D2BC26 /* Fly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD9B1E04974C00D2BC26 /* Fly.mp3 */; };
 		E52BCD9F1E04974C00D2BC26 /* Score.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD9C1E04974C00D2BC26 /* Score.mp3 */; };
+		E52BCDA31E0498F700D2BC26 /* GameplayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E52BCDA21E0498F700D2BC26 /* GameplayScene.sks */; };
+		E52BCDA61E0499F800D2BC26 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BCDA51E0499F800D2BC26 /* GameplayScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E52BCD5F1E048EA400D2BC26 /* FlappyBirdClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyBirdClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52BCD621E048EA400D2BC26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E52BCD641E048EA400D2BC26 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		E52BCD661E048EA400D2BC26 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		E52BCD681E048EA400D2BC26 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		E52BCD6A1E048EA400D2BC26 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E52BCD6D1E048EA400D2BC26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E52BCD6F1E048EA400D2BC26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +58,8 @@
 		E52BCD9A1E04974C00D2BC26 /* Dead.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dead.mp3; sourceTree = "<group>"; };
 		E52BCD9B1E04974C00D2BC26 /* Fly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fly.mp3; sourceTree = "<group>"; };
 		E52BCD9C1E04974C00D2BC26 /* Score.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Score.mp3; sourceTree = "<group>"; };
+		E52BCDA21E0498F700D2BC26 /* GameplayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameplayScene.sks; sourceTree = "<group>"; };
+		E52BCDA51E0499F800D2BC26 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				E52BCD621E048EA400D2BC26 /* AppDelegate.swift */,
-				E52BCD641E048EA400D2BC26 /* GameScene.sks */,
 				E52BCD661E048EA400D2BC26 /* Actions.sks */,
-				E52BCD681E048EA400D2BC26 /* GameScene.swift */,
 				E52BCD6A1E048EA400D2BC26 /* GameViewController.swift */,
 				E52BCD6C1E048EA400D2BC26 /* Main.storyboard */,
 				E52BCD6F1E048EA400D2BC26 /* Assets.xcassets */,
@@ -174,6 +172,7 @@
 		E52BCDA01E04985300D2BC26 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E52BCDA21E0498F700D2BC26 /* GameplayScene.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -181,8 +180,17 @@
 		E52BCDA11E04986B00D2BC26 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E52BCDA41E0499DD00D2BC26 /* Scene Classes */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		E52BCDA41E0499DD00D2BC26 /* Scene Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E52BCDA51E0499F800D2BC26 /* GameplayScene.swift */,
+			);
+			name = "Scene Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +257,7 @@
 				E52BCD841E04965600D2BC26 /* Blue 3.png in Resources */,
 				E52BCD6E1E048EA400D2BC26 /* Main.storyboard in Resources */,
 				E52BCD8C1E04967900D2BC26 /* Green 3.png in Resources */,
+				E52BCDA31E0498F700D2BC26 /* GameplayScene.sks in Resources */,
 				E52BCD9E1E04974C00D2BC26 /* Fly.mp3 in Resources */,
 				E52BCD921E04968500D2BC26 /* Red 1.png in Resources */,
 				E52BCD9F1E04974C00D2BC26 /* Score.mp3 in Resources */,
@@ -257,7 +266,6 @@
 				E52BCD851E04965600D2BC26 /* Blue 4.png in Resources */,
 				E52BCD8B1E04967900D2BC26 /* Green 2.png in Resources */,
 				E52BCD981E04973000D2BC26 /* 04b_19.ttf in Resources */,
-				E52BCD651E048EA400D2BC26 /* GameScene.sks in Resources */,
 				E52BCD941E04968500D2BC26 /* Red 3.png in Resources */,
 				E52BCD951E04968500D2BC26 /* Red 4.png in Resources */,
 				E52BCD831E04965600D2BC26 /* Blue 2.png in Resources */,
@@ -276,7 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E52BCD691E048EA400D2BC26 /* GameScene.swift in Sources */,
+				E52BCDA61E0499F800D2BC26 /* GameplayScene.swift in Sources */,
 				E52BCD6B1E048EA400D2BC26 /* GameViewController.swift in Sources */,
 				E52BCD631E048EA400D2BC26 /* AppDelegate.swift in Sources */,
 			);
