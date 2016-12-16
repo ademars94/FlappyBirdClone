@@ -31,6 +31,7 @@
 		E52BCD9F1E04974C00D2BC26 /* Score.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E52BCD9C1E04974C00D2BC26 /* Score.mp3 */; };
 		E52BCDA31E0498F700D2BC26 /* GameplayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E52BCDA21E0498F700D2BC26 /* GameplayScene.sks */; };
 		E52BCDA61E0499F800D2BC26 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BCDA51E0499F800D2BC26 /* GameplayScene.swift */; };
+		E52BCDA91E04AFF800D2BC26 /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52BCDA81E04AFF800D2BC26 /* Bird.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		E52BCD9C1E04974C00D2BC26 /* Score.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Score.mp3; sourceTree = "<group>"; };
 		E52BCDA21E0498F700D2BC26 /* GameplayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameplayScene.sks; sourceTree = "<group>"; };
 		E52BCDA51E0499F800D2BC26 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayScene.swift; sourceTree = "<group>"; };
+		E52BCDA81E04AFF800D2BC26 /* Bird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bird.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,17 +182,26 @@
 		E52BCDA11E04986B00D2BC26 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E52BCDA41E0499DD00D2BC26 /* Scene Classes */,
+				E52BCDA71E04AFDF00D2BC26 /* Bird */,
+				E52BCDA41E0499DD00D2BC26 /* Scene */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		E52BCDA41E0499DD00D2BC26 /* Scene Classes */ = {
+		E52BCDA41E0499DD00D2BC26 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				E52BCDA51E0499F800D2BC26 /* GameplayScene.swift */,
 			);
-			name = "Scene Classes";
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		E52BCDA71E04AFDF00D2BC26 /* Bird */ = {
+			isa = PBXGroup;
+			children = (
+				E52BCDA81E04AFF800D2BC26 /* Bird.swift */,
+			);
+			name = Bird;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +297,7 @@
 			files = (
 				E52BCDA61E0499F800D2BC26 /* GameplayScene.swift in Sources */,
 				E52BCD6B1E048EA400D2BC26 /* GameViewController.swift in Sources */,
+				E52BCDA91E04AFF800D2BC26 /* Bird.swift in Sources */,
 				E52BCD631E048EA400D2BC26 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
