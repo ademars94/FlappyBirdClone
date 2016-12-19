@@ -8,10 +8,12 @@
 
 import SpriteKit
 
-class GameplayScene: SKScene {
+class GameplayScene: SKScene, SKPhysicsContactDelegate {
   
   var bird = Bird()
   var pipeHolder = SKNode()
+  var scoreLabel = SKLabelNode(fontNamed: "04b_19")
+  var score = 0
 
   override func didMove(to view: SKView) {
     print("Initializing...")
@@ -19,14 +21,35 @@ class GameplayScene: SKScene {
   }
   
   func initialize() {
+    physicsWorld.contactDelegate = self
+    
     createBackground()
     createGround()
     createBird()
     spawnObstacles()
+    createLabel()
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     bird.flap()
+  }
+  
+  func didBegin(_ contact: SKPhysicsContact) {
+    var firstBody = SKPhysicsBody()
+    var secondBody = SKPhysicsBody()
+    
+    if contact.bodyA.node?.name == "Bird" {
+      firstBody = contact.bodyA
+      secondBody = contact.bodyB
+    } else {
+      firstBody = contact.bodyB
+      secondBody = contact.bodyA
+    }
+    
+    if firstBody.node?.name == "Bird" && secondBody.node?.name == "Score" {
+      incrementScore()
+    }
+    
   }
   
   override func update(_ currentTime: TimeInterval) {
@@ -75,6 +98,17 @@ class GameplayScene: SKScene {
     let pipeDown = SKSpriteNode(imageNamed: "Pipe 1")
     let destination = self.frame.width * 2
     
+    let scoreNode = SKSpriteNode()
+    scoreNode.name = "Score"
+    scoreNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    scoreNode.position = CGPoint(x: 0, y: 0)
+    scoreNode.size = CGSize(width: 5, height: 300)
+    scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
+    scoreNode.physicsBody?.categoryBitMask = CollisionType.score
+    scoreNode.physicsBody?.collisionBitMask = 0; // Make sure this node doesn't collide with bird
+    scoreNode.physicsBody?.affectedByGravity = false
+    scoreNode.physicsBody?.isDynamic = false
+    
     pipeUp.name = "Pipe"
     pipeUp.position = CGPoint(x: 0, y: 630)
     pipeUp.zRotation = CGFloat(M_PI)
@@ -96,6 +130,8 @@ class GameplayScene: SKScene {
     
     pipeHolder.addChild(pipeUp)
     pipeHolder.addChild(pipeDown)
+    pipeHolder.addChild(scoreNode)
+    
     pipeHolder.position.x = self.frame.width + 100
     pipeHolder.position.y = CGFloat.randomBetween(first: -300, second: 300)
     pipeHolder.zPosition = 5
@@ -106,6 +142,19 @@ class GameplayScene: SKScene {
     let remove = SKAction.removeFromParent()
     
     pipeHolder.run(SKAction.sequence([move, remove]), withKey: "Move")
+  }
+  
+  func createLabel() {
+    scoreLabel.zPosition = 6
+    scoreLabel.position = CGPoint(x: 0, y: 450)
+    scoreLabel.fontSize = 120
+    scoreLabel.text = "0"
+    self.addChild(scoreLabel)
+  }
+  
+  func incrementScore() {
+    score += 1
+    scoreLabel.text = String(describing: score)
   }
   
   func moveBackground() {

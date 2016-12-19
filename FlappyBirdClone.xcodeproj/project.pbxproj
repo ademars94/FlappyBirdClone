@@ -184,9 +184,9 @@
 		E52BCDA11E04986B00D2BC26 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E547BD9E1E084AE00005E3B4 /* Random */,
 				E52BCDA71E04AFDF00D2BC26 /* Bird */,
 				E52BCDA41E0499DD00D2BC26 /* Scene */,
+				E547BD9E1E084AE00005E3B4 /* Random */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
