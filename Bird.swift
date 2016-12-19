@@ -24,6 +24,7 @@ class Bird: SKSpriteNode {
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.height / 2)
     self.physicsBody?.affectedByGravity = true
+    self.physicsBody?.allowsRotation = false
     self.physicsBody?.categoryBitMask = CollisionType.bird
     self.physicsBody?.collisionBitMask = CollisionType.ground | CollisionType.pipes
     self.physicsBody?.contactTestBitMask = CollisionType.ground | CollisionType.pipes | CollisionType.score

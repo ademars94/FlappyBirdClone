@@ -11,6 +11,7 @@ import SpriteKit
 class GameplayScene: SKScene {
   
   var bird = Bird()
+  var pipeHolder = SKNode()
 
   override func didMove(to view: SKView) {
     print("Initializing...")
@@ -21,10 +22,16 @@ class GameplayScene: SKScene {
     createBackground()
     createGround()
     createBird()
+    spawnObstacles()
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     bird.flap()
+  }
+  
+  override func update(_ currentTime: TimeInterval) {
+    moveBackground()
+    moveGround()
   }
   
   func createBird() {
@@ -32,11 +39,6 @@ class GameplayScene: SKScene {
     bird.initialize()
     bird.position = CGPoint(x: -50, y: 0)
     self.addChild(bird)
-  }
-  
-  override func update(_ currentTime: TimeInterval) {
-    moveBackground()
-    moveGround()
   }
   
   func createBackground() {
@@ -66,9 +68,47 @@ class GameplayScene: SKScene {
     }
   }
   
+  func createPipes() {
+    pipeHolder = SKNode()
+    pipeHolder.name = "Holder"
+    let pipeUp = SKSpriteNode(imageNamed: "Pipe 1")
+    let pipeDown = SKSpriteNode(imageNamed: "Pipe 1")
+    let destination = self.frame.width * 2
+    
+    pipeUp.name = "Pipe"
+    pipeUp.position = CGPoint(x: 0, y: 500)
+    pipeUp.zRotation = CGFloat(M_PI)
+    pipeUp.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    pipeUp.physicsBody = SKPhysicsBody(rectangleOf: pipeUp.size)
+    pipeUp.physicsBody?.affectedByGravity = false
+    pipeUp.physicsBody?.isDynamic = false
+    pipeUp.physicsBody?.categoryBitMask = CollisionType.pipes
+    
+    pipeDown.name = "Pipe"
+    pipeDown.position = CGPoint(x: 0, y: -500)
+    pipeDown.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    pipeDown.physicsBody = SKPhysicsBody(rectangleOf: pipeDown.size)
+    pipeDown.physicsBody?.affectedByGravity = false
+    pipeDown.physicsBody?.isDynamic = false
+    pipeDown.physicsBody?.categoryBitMask = CollisionType.pipes
+    
+    pipeHolder.addChild(pipeUp)
+    pipeHolder.addChild(pipeDown)
+    pipeHolder.position.x = self.frame.width + 100
+    pipeHolder.position.y = 0
+    pipeHolder.zPosition = 5
+    
+    self.addChild(pipeHolder)
+    
+    let move = SKAction.moveTo(x: -destination, duration: TimeInterval(10))
+    let remove = SKAction.removeFromParent()
+    
+    pipeHolder.run(SKAction.sequence([move, remove]), withKey: "Move")
+  }
+  
   func moveBackground() {
     enumerateChildNodes(withName: "BG", using: { node, error in
-      node.position.x -= 1
+      node.position.x -= 2
       if node.position.x < -(self.frame.width) {
         node.position.x += self.frame.width * 3
       }
@@ -77,11 +117,23 @@ class GameplayScene: SKScene {
   
   func moveGround() {
     enumerateChildNodes(withName: "Ground", using: { node, error in
-      node.position.x -= 3
+      node.position.x -= 4
       if node.position.x < -(self.frame.width) {
         node.position.x += self.frame.width * 3
       }
     })
+  }
+  
+  func spawnObstacles() {
+    let spawn = SKAction.run({ () -> Void in
+      self.createPipes()
+    })
+    
+    let delay = SKAction.wait(forDuration: 2)
+    
+    let sequence = SKAction.sequence([spawn, delay])
+    
+    self.run(SKAction.repeatForever(sequence), withKey: "Spawn")
   }
   
 }
