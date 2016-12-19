@@ -14,6 +14,8 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
   var pipeHolder = SKNode()
   var scoreLabel = SKLabelNode(fontNamed: "04b_19")
   var score = 0
+  var gameStarted = false
+  var isAlive = false
 
   override func didMove(to view: SKView) {
     print("Initializing...")
@@ -26,12 +28,21 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     createBackground()
     createGround()
     createBird()
-    spawnObstacles()
     createLabel()
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    bird.flap()
+    if gameStarted == false {
+      isAlive = true
+      gameStarted = true
+      bird.physicsBody?.affectedByGravity = true
+      spawnObstacles()
+      bird.flap()
+    }
+    
+    if isAlive {
+      bird.flap()
+    }
   }
   
   func didBegin(_ contact: SKPhysicsContact) {
@@ -48,13 +59,23 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     
     if firstBody.node?.name == "Bird" && secondBody.node?.name == "Score" {
       incrementScore()
+    } else if firstBody.node?.name == "Bird" && secondBody.node?.name == "Pipe" {
+      if isAlive {
+        makeBirdDie()
+      }
+    } else if firstBody.node?.name == "Bird" && secondBody.node?.name == "Ground" {
+      if isAlive {
+        makeBirdDie()
+      }
     }
     
   }
   
   override func update(_ currentTime: TimeInterval) {
-    moveBackground()
-    moveGround()
+    if isAlive {
+      moveBackground()
+      moveGround()
+    }
   }
   
   func createBird() {
@@ -155,6 +176,41 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
   func incrementScore() {
     score += 1
     scoreLabel.text = String(describing: score)
+  }
+  
+  func makeBirdDie() {
+    self.removeAction(forKey: "Spawn")
+    
+    for child in children {
+      if child.name == "Holder" {
+        child.removeAction(forKey: "Move")
+      }
+    }
+    
+    isAlive = false
+    
+    let retry = SKSpriteNode(imageNamed: "Retry")
+    let quit = SKSpriteNode(imageNamed: "Quit")
+    
+    retry.name = "Retry"
+    retry.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    retry.position = CGPoint(x: -150, y: -150)
+    retry.zPosition = 7
+    retry.setScale(0)
+    
+    quit.name = "Quit"
+    quit.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    quit.position = CGPoint(x: 150, y: -150)
+    quit.zPosition = 7
+    quit.setScale(0)
+    
+    let scaleUp = SKAction.scale(to: 1, duration: TimeInterval(0.5))
+    
+    retry.run(scaleUp)
+    quit.run(scaleUp)
+    
+    self.addChild(retry)
+    self.addChild(quit)
   }
   
   func moveBackground() {
