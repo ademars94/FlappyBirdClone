@@ -76,17 +76,19 @@ class GameplayScene: SKScene {
     let destination = self.frame.width * 2
     
     pipeUp.name = "Pipe"
-    pipeUp.position = CGPoint(x: 0, y: 500)
+    pipeUp.position = CGPoint(x: 0, y: 630)
     pipeUp.zRotation = CGFloat(M_PI)
     pipeUp.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    pipeUp .yScale = 1.5
     pipeUp.physicsBody = SKPhysicsBody(rectangleOf: pipeUp.size)
     pipeUp.physicsBody?.affectedByGravity = false
     pipeUp.physicsBody?.isDynamic = false
     pipeUp.physicsBody?.categoryBitMask = CollisionType.pipes
     
     pipeDown.name = "Pipe"
-    pipeDown.position = CGPoint(x: 0, y: -500)
+    pipeDown.position = CGPoint(x: 0, y: -630)
     pipeDown.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    pipeDown.yScale = 1.5
     pipeDown.physicsBody = SKPhysicsBody(rectangleOf: pipeDown.size)
     pipeDown.physicsBody?.affectedByGravity = false
     pipeDown.physicsBody?.isDynamic = false
@@ -95,7 +97,7 @@ class GameplayScene: SKScene {
     pipeHolder.addChild(pipeUp)
     pipeHolder.addChild(pipeDown)
     pipeHolder.position.x = self.frame.width + 100
-    pipeHolder.position.y = 0
+    pipeHolder.position.y = CGFloat.randomBetween(first: -300, second: 300)
     pipeHolder.zPosition = 5
     
     self.addChild(pipeHolder)
