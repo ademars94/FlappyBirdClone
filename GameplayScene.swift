@@ -16,6 +16,8 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
   var score = 0
   var gameStarted = false
   var isAlive = false
+  
+  var press = SKSpriteNode()
 
   override func didMove(to view: SKView) {
     print("Initializing...")
@@ -23,16 +25,32 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func initialize() {
+    gameStarted = false
+    isAlive = false
+    
+    score = 0
+    
     physicsWorld.contactDelegate = self
     
+    createInstructions()
     createBackground()
     createGround()
     createBird()
     createLabel()
   }
   
+  func createInstructions() {
+    press = SKSpriteNode(imageNamed: "Press")
+    press.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    press.position = CGPoint(x: 0, y: 0)
+    press.setScale(1.8)
+    press.zPosition = 10
+    self.addChild(press)
+  }
+  
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     if gameStarted == false {
+      press.removeFromParent()
       isAlive = true
       gameStarted = true
       bird.physicsBody?.affectedByGravity = true
@@ -42,6 +60,20 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     
     if isAlive {
       bird.flap()
+    }
+    
+    for touch in touches {
+      let location = touch.location(in: self)
+      
+      if atPoint(location).name == "Retry" {
+        removeAllActions()
+        removeAllChildren()
+        initialize()
+      }
+      
+      if atPoint(location).name == "Quit" {
+        // Back to main menu
+      }
     }
   }
   
